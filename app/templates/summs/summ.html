@@ -1,0 +1,112 @@
+{% extends "public/base.html" %}
+{% from "public/_render_field.html" import render_field, render_submit, render_search %}
+{% block title %}Invocadores{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col s12 m9 offset-m1 l9 offset-l1">
+		<div class="section">
+			<div class="row">
+				<div class="col s12 m12 l6">
+					<div class="card horizontal hoverable">
+						<div class="card-image">
+							<img src="{{ p_icon }}">
+						</div>
+						<div class="card-stacked">
+							<div class="card-content">
+								<h4>¡{{ summoner["name"] }}!</h4>
+								<p>Nivel: {{ summoner["summonerLevel"] }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m12 l6">
+					<div class="card-panel blue hoverable">
+						<span class="white-text">Recuerda... Puedes crear una cuenta en nuestro sitio para tener tu lista de consulta rápida personalizada, además puedes comparar tus estadisticas con los invocadores que esten en dicha lista.
+						</span>
+			        </div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12 m12 l6">
+				<div class="card yellow accent-4 hoverable">
+						<div class="card-content black-text">
+							<p class="center-align">CLASIFICATORIAS</p>
+						</div>
+						<div class="card-tabs black-text">
+							<ul class="tabs tabs-fixed-width tabs-transparent">
+								<li class="tab"><a class="active" href="#test6">SOLO/DÚO</a></li>
+								<li class="tab"><a href="#test7">FLEXIBLE</a></li>
+							</ul>
+						</div>
+						<div class="card-content grey lighten-4">
+							<div id="test6">
+							{% if soloq["tier"] != "UNRANKED" %}
+								<h5>{{ soloq["tier"] }} {{ soloq["rank"] }}</h5>
+								<h6>{{ soloq["leaguePoints"] }} LP / {{ soloq["wins"] }}V {{ soloq["losses"] }}L</h6>
+								<p>{{ soloq["leagueName"] }}</p>
+							{% else %}
+								<h5>{{ soloq["tier"] }}</h5>
+							{% endif %}
+							</div>
+							<div id="test7">
+							{% if flex["tier"] != "UNRANKED" %}
+								<h5> {{ flex["tier"] }} {{ flex["rank"] }}</h5>
+								<h6>{{ flex["leaguePoints"] }} LP / {{ flex["wins"] }}V {{ flex["losses"] }}L</h6>
+								<p>{{ flex["leagueName"] }}</p>
+							{% else %}
+								<h5>{{ flex["tier"] }}</h5>
+							{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m12 l6">
+					<div class="card horizontal hoverable">
+						<div class="card-image">
+							<img src="{{ c_icon }}">
+						</div>
+						<div class="card-stacked">
+							<div class="card-content">
+								<h5>Última partida</h5>
+								<p>Campeón: {{ champion["name"] }}</p>
+								<p>{{ champion["title"] }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="section">
+			<div class="row">
+				<div class="col s12">
+					<ul class="tabs grey darken-4">
+						<li class="tab col s3"><a class="active white-text" href="#test1">Resumen</a></li>
+						<li class="tab col s3"><a class="white-text" href="#test2">Campeones</a></li>
+						<li class="tab col s3"><a class="white-text" href="#test3">Ligas</a></li>
+						<li class="tab col s3"><a class="white-text" href="#test4">Runas</a></li>
+						<li class="tab col s3"><a class="white-text" href="#test5">Maestrías</a></li>
+					</ul>
+				</div>
+				<div id="test1" class="col s12">
+					{% for match in matches %}
+					<div class="row">
+						<div class="col s12 m12 l12">
+							<div class="card-panel teal">
+								<span class="white-text">
+									{{ match["champion"] }}
+								</span>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div id="test2" class="col s12">Test 2</div>
+				<div id="test3" class="col s12">Test 3</div>
+				<div id="test4" class="col s12">Test 4</div>
+				<div id="test5" class="col s12">Test 5</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

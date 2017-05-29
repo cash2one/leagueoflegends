@@ -1,0 +1,20 @@
+{% macro render_field(field) %}
+<div class="input-field col s12 m12 l12">
+	{{ field(class_="validate", **kwargs)|safe }}
+	<label for="{{ field.name }}">{{ field.label.text }}</label>
+</div>
+{% endmacro %}
+
+{% macro render_search(field) %}
+<div class="input-field">
+	{{ field(placeholder="Invocador", type="search", **kwargs)|safe }}
+	<label class="label-icon" for="{{ field.name }}"><i class="material-icons">search</i></label>
+	<i class="material-icons">close</i>
+</div>
+{% endmacro %}
+
+{% macro render_submit(button) %}
+<button class="btn waves-effect waves-light" type="submit" name="action">{{ button.label.text }}
+	<i class="material-icons right">send</i>
+</button>
+{% endmacro %}
